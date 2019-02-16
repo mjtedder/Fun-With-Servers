@@ -37,7 +37,10 @@ const displayHome = (url, req, res) => {
 }
 
 const displayFoods = (url, req, res) => {
-
+    fs.readFile(__dirname + '/foods.html', (err, data) => {
+        res.writeHead(200, { 'Content-Type': 'text/html'})
+        res.end(data)
+    })
 }
 
 const displayMovies = (url, req, res) => {
