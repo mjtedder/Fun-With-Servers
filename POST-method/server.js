@@ -15,7 +15,7 @@ function handleRequest(req, res) {
     }
 }
 
-function displayWelcomePage(req, res) {
+const displayWelcomePage = (req, res) => {
     fs.readFile(__dirname + '/index.html', function (err, data) {
         if (err) {
             res.writeHead(500, {
