@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en-us'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>HTML Form:post</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+</head>
+
+<body>
+    <div class='jumbotron'>
+        <h1 class='text-center'>What's Your Favorite Thing?</h1>
+    </div>
+    <div class='container'>
+        <form action='localhost:8000/thanks' method='post'>
+            <div class="form-group">
+                <label for="formGroupExampleInput">What is your favorite food?</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Favorite food">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">What is your favorite movie?</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Favorite movie">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

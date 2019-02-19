@@ -1,15 +1,34 @@
 const http = require('http')
+const fs = require('fs')
 
-const PORT = 8080
+const PORT = 8000
 
 const server = http.createServer(handleRequest)
 
-const handleRequest = (req, res) => {
-    let requestData = ''
+function handleRequest(req, res) {
+    let path = req.url
+    switch (path) {
+        case '/':
+            return displayWelcomePage(path, req, res)
+        case '/thanks':
+            return displayThankYouPage(path, req, res)
+    }
+}
 
-    req.on('data', (data => {
-        requestData += data
-    }))
+const displayWelcomePage = (url, req, res) => {
+    fs.readFile(__dirname + '/index.html', function (err, data) {
+        res.writeHead(200, {
+            'Content-Type': 'text/html'
+        })
+        res.end(data)
+    })
+}
+
+const displayThankYouPage = (url, req, res) => {
+    let requestData = ''
+    req.on('data', (data) => {
+        requestData += data;
+    })
     req.on('end', () => {
         console.log('You did a', req.method, 'with the data:\n', requestData)
         res.end()
