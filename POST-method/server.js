@@ -11,7 +11,7 @@ function handleRequest(req, res) {
         case '/':
             return displayWelcomePage(req, res)
         case '/thanks':
-            return displayThankYouPage(path, req, res)
+            return displayThankYouPage(req, res)
     }
 }
 
@@ -33,12 +33,20 @@ const displayWelcomePage = (req, res) => {
 
 const displayThankYouPage = (req, res) => {
     let requestData = ''
+    let myHTML = '<html><head><title>Hello World!</title></head><body><h1>Oops, I did not receive any data</h1></body></html>'
     req.on('data', (data) => {
         requestData += data;
+        console.log('You did a', req.method, 'with the data:\n', requestData)
+        myHTML =
+        '<html><head><title>Hello World!</title></head><body>' +
+        '<h1>Thank you for the data: </h1><code>' +
+        requestData +
+        '</code>' +
+        '</body></html>'
     })
     req.on('end', () => {
-        console.log('You did a', req.method, 'with the data:\n', requestData)
-        res.end()
+        res.writeHead(200, {'Content-Type': 'text/html'})
+        res.end(myHTML)
     })
 }
 
